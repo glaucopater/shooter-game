@@ -14,6 +14,7 @@ class Enemy extends Component {
 
     let gruntX = grunt.pos[index][0],
       gruntY = grunt.pos[index][1];
+
     const move = ~~(Math.random() * 5),
       playerX = this.props.playerPos[0],
       playerY = this.props.playerPos[1];
@@ -59,7 +60,8 @@ class Enemy extends Component {
     if (
       crosshairX >= gruntX &&
       crosshairX <= gruntX + gruntSize &&
-      (crosshairY >= gruntY && crosshairY <= gruntY + gruntSize)
+      crosshairY >= gruntY &&
+      crosshairY <= gruntY + gruntSize
     ) {
       this.handleDamageGrunt();
       gameData.isShooting = false;
@@ -99,7 +101,7 @@ class Enemy extends Component {
         style={{
           left: grunt.pos[this.props.index][0],
           top: grunt.pos[this.props.index][1],
-          padding: grunt.size
+          padding: grunt.size,
         }}
       >
         <span aria-label="enemy" role="img">
