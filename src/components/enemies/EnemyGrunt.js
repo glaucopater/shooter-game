@@ -104,7 +104,7 @@ class Enemy extends Component {
           padding: grunt.size,
         }}
       >
-        <span aria-label="enemy" role="img">
+        <span aria-label="enemy" role="img" style={{ fontSize: 30 }}>
           👽
         </span>
       </div>

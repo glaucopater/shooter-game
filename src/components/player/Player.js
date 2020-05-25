@@ -190,7 +190,7 @@ export default class Player extends Component {
             top: this.props.pos[1],
           }}
         >
-          <span aria-label="player" role="img">
+          <span aria-label="player" role="img" style={{ fontSize: 30 }}>
             🤨
           </span>
         </div>

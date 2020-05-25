@@ -3,10 +3,13 @@ import { gameData } from "../../data/game/gameData";
 import { grunt } from "../../data/enemies/grunt";
 import Enemy from "./EnemyGrunt";
 
+const ENEMY_INCREMENT_PER_STAGE = 0;
+const ENEMY_INITIAL_COUNT = 1;
+
 class Enemies extends Component {
   grunts;
   interval;
-  numberEnemies = 2;
+  numberEnemies = ENEMY_INITIAL_COUNT;
   stage = 0;
 
   handlePopulateEnemies = () => {
@@ -29,7 +32,7 @@ class Enemies extends Component {
 
   handleGameState = () => {
     if (grunt.pos.length <= 0) {
-      this.numberEnemies += 3;
+      this.numberEnemies += ENEMY_INCREMENT_PER_STAGE;
       this.stage += 1;
       grunt.generateGrunts(this.numberEnemies);
     }
