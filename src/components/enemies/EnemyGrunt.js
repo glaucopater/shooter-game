@@ -3,9 +3,11 @@ import { audio } from "../../data/audio/audio";
 import { gameData } from "../../data/game/gameData";
 import { grunt } from "../../data/enemies/grunt";
 
+export const damageAreaSize = 5;
+
 class Enemy extends Component {
-  movementInterval = false;
-  damageInterval = false;
+  movementInterval = null;
+  damageInterval = null;
   key = grunt.keys[this.props.index];
 
   handleEnemyMovement = () => {
@@ -22,7 +24,7 @@ class Enemy extends Component {
     gruntY = gruntY > playerY ? gruntY - move : gruntY + move;
     grunt.updateGruntPos(index, [gruntX, gruntY]);
     this.handleCheckPlayerCollision(gruntX, gruntY, playerX, playerY);
-    this.handleCheckCrosshairPos(gruntX, gruntY, playerX, playerY);
+    this.handleCheckCrosshairPos(gruntX, gruntY);
   };
 
   handleCheckPlayerCollision = (gruntX, gruntY, playerX, playerY) => {
@@ -54,9 +56,18 @@ class Enemy extends Component {
   handleCheckCrosshairPos = (gruntX, gruntY) => {
     if (!gameData.isShooting) return;
 
-    const crosshairX = this.props.crosshairPos[0],
-      crosshairY = this.props.crosshairPos[1],
-      gruntSize = grunt.size * 2;
+    const crosshairX = this.props.crosshairPos[0];
+    const crosshairY = this.props.crosshairPos[1];
+    const gruntSize = grunt.size * damageAreaSize;
+
+    console.log(
+      "Enemy -> handleCheckCrosshairPos -> crosshairX, gruntX",
+      crosshairX,
+      crosshairY,
+      gruntX,
+      gruntY
+    );
+
     if (
       crosshairX >= gruntX &&
       crosshairX <= gruntX + gruntSize &&
