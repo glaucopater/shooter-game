@@ -183,9 +183,6 @@ export default class Player extends Component {
   }
 
   render() {
-    const { height, width } = getWindowDimensions();
-    console.log("Player -> render -> size", height, width);
-
     return (
       <>
         <div

@@ -12,8 +12,6 @@ class Hud extends Component {
   }
 
   render() {
-    console.log("Hud -> render -> this.props", this.props);
-
     return (
       <div className="hud">
         <div>Player Health: {this.props.health}</div>
