@@ -23,7 +23,7 @@ class Crosshairs extends Component {
           className="outerCrosshair"
           style={{
             top: this.props.crosshairPos[1],
-            left: this.props.crosshairPos[0]
+            left: this.props.crosshairPos[0],
           }}
         />
         <div
@@ -31,10 +31,10 @@ class Crosshairs extends Component {
           style={{
             display: this.props.crosshairDisplay,
             top: this.props.crosshairPos[1],
-            left: this.props.crosshairPos[0]
+            left: this.props.crosshairPos[0],
           }}
         >
-          <span aria-label="fire" role="img">
+          <span aria-label="fire" role="img" style={{ fontSize: 30 }}>
             🔥
           </span>
         </div>
@@ -42,7 +42,7 @@ class Crosshairs extends Component {
           className="innerCrosshair"
           style={{
             top: this.props.crosshairPos[1],
-            left: this.props.crosshairPos[0]
+            left: this.props.crosshairPos[0],
           }}
         />
       </>

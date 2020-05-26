@@ -16,8 +16,9 @@ body {
   background: rgba(2, 103, 218, 0.562);
   position: relative;
   margin: 2% auto;
-  width: 900px;
-  height: 600px;
+  display: flex;
+  flex-direction: column;
+  height: 800px;
 }
 
 .enemy {
@@ -25,21 +26,24 @@ body {
 }
 
 .hud {
-  display: inline-flex;
-  padding: 2rem;
+  display: flex;
+  padding: 1rem;
   position: relative;
   color: white;
   font-weight: bold;
   font-size: 2rem;
+  border: 1px solid white;
+  justify-content: space-between;
+  background: #ffffff50;
+  ;
 }
 
 .spark {
-  /* background: rgb(253, 255, 113); */
   border-radius: 50%;
   position: absolute;
-  width: 20px;
-  height: 20px;
-  transform: translate(-5px, -10px);
+  width: 50px;
+  height: 50px;
+  transform: translate(-12px, -25px);
 }
 
 .outerCrosshair {
@@ -63,13 +67,12 @@ body {
 }
 
 .stageCounter {
-  display: inline-block;
+  display: flex;
   color: white;
   margin: 0;
   padding: 20px;
-  margin-right: 2rem;
-  margin-top: 1.5rem;
   min-width: 7rem;
+  background: #ffffff50;
 }
 
 .tempHud {

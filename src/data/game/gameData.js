@@ -1,4 +1,4 @@
 export const gameData = {
   frameRate: 16,
-  isShooting: false
-}
+  isShooting: false,
+};

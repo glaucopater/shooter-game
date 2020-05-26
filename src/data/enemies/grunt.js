@@ -1,21 +1,44 @@
 import { v4 } from "uuid"; // For version 3
+import { getWindowDimensions } from "../../helpers";
+
+export const default_size = 12;
+export const default_damage = 5;
+export const default_stride = 7;
+
+//generate random rgb number in range
+// r
+// g
+// b
+export const getRandomRGBColor = () => {
+  return `rgb(${~~(Math.random() * 105) + 150}, ${~~(Math.random() * 80)}, ${~~(
+    Math.random() * 32
+  )}`;
+};
+
+export const getRandomPosition = () => {
+  const { height, width } = getWindowDimensions();
+  const X = Math.random() < 0.5 ? 0 : width - grunt.size * 2;
+  const Y = ~~(Math.random() * (height - grunt.size * 2));
+  return [X, Y];
+};
+
+export const getRandomSpeed = () => {
+  return grunt.stride + ~~(Math.random() * 10);
+};
 
 export const grunt = {
-  size: 12,
+  size: default_size,
   pos: [],
   color: [],
   speed: [],
   keys: [],
-  damage: 5,
-  stride: 7,
+  damage: default_damage,
+  stride: default_stride,
   generateGrunts: (num) => {
     for (let i = 0; i < num; i++) {
-      const X = Math.random() < 0.5 ? 0 : 900 - grunt.size * 2;
-      const Y = ~~(Math.random() * (600 - grunt.size * 2));
-      const color = `rgb(${~~(Math.random() * 105) + 150}, ${~~(
-        Math.random() * 80
-      )}, ${~~(Math.random() * 32)}`;
-      const speed = grunt.stride + ~~(Math.random() * 10);
+      const [X, Y] = getRandomPosition();
+      const color = getRandomRGBColor();
+      const speed = getRandomSpeed();
       const key = v4();
       grunt.pos.push([X, Y]);
       grunt.color.push(color);

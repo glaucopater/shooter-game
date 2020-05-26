@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { audio } from "../../data/audio/audio";
 import { gameData } from "../../data/game/gameData";
 import { PlayerContext } from "../../contexts/PlayerContext";
@@ -7,13 +7,12 @@ import Enemies from "../enemies/EnemyGrunts";
 import Hud from "../UI/Hud";
 import Player from "../player/Player";
 
-export default class Arena extends Component {
+export default class Arena extends PureComponent {
   state = {
     crosshairPos: [100, 100],
     crosshairDisplay: "none",
   };
-
-  fireInterval = false;
+  fireInterval = null;
   interval;
   isShooting = false;
 
@@ -48,10 +47,6 @@ export default class Arena extends Component {
     ];
     this.setState({ crosshairPos: newCrosshairPos });
   };
-
-  shouldComponentUpdate() {
-    return false;
-  }
 
   componentDidMount() {
     this.interval = setInterval(() => this.forceUpdate(), gameData.frameRate);

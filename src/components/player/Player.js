@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { gameData } from "../../data/game/gameData";
+import { getWindowDimensions } from "../../helpers";
+
+export const getWindowSize = () => {
+  return { width: window.pageXOffset, height: window.pageYOffset };
+};
 
 export default class Player extends Component {
-  map = { height: 600, width: 900 };
+  map = getWindowDimensions();
 
   handlePlayerMove = (index, orientation) => {
     let newPos = this.handleDiagonalMovements(index, orientation);
@@ -190,7 +195,7 @@ export default class Player extends Component {
             top: this.props.pos[1],
           }}
         >
-          <span aria-label="player" role="img">
+          <span aria-label="player" role="img" style={{ fontSize: 30 }}>
             🤨
           </span>
         </div>
