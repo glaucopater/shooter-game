@@ -3,9 +3,11 @@
 # todo
 
 - reduce the number of enemies ✔
-- reduce speed of enemies --> config
+- reduce speed of enemies ✔
+- increase size of emojis ✔
 - pause game
 - restart game
-- increase size of emojis
+- game over
+- enable score ✔
 
 # if enemy is touching player each second a damage is performed

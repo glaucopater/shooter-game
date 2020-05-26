@@ -3,7 +3,13 @@ import { audio } from "../../data/audio/audio";
 import { gameData } from "../../data/game/gameData";
 import { grunt } from "../../data/enemies/grunt";
 
+//min is 2
+export const maxSpeed = 1;
 export const damageAreaSize = 5;
+
+export const getRandomMove = () => {
+  return ~~(Math.random() * maxSpeed);
+};
 
 class Enemy extends Component {
   movementInterval = null;
@@ -17,9 +23,10 @@ class Enemy extends Component {
     let gruntX = grunt.pos[index][0],
       gruntY = grunt.pos[index][1];
 
-    const move = ~~(Math.random() * 5),
+    const move = getRandomMove(),
       playerX = this.props.playerPos[0],
       playerY = this.props.playerPos[1];
+
     gruntX = gruntX > playerX ? gruntX - move : gruntX + move;
     gruntY = gruntY > playerY ? gruntY - move : gruntY + move;
     grunt.updateGruntPos(index, [gruntX, gruntY]);
@@ -60,14 +67,6 @@ class Enemy extends Component {
     const crosshairY = this.props.crosshairPos[1];
     const gruntSize = grunt.size * damageAreaSize;
 
-    console.log(
-      "Enemy -> handleCheckCrosshairPos -> crosshairX, gruntX",
-      crosshairX,
-      crosshairY,
-      gruntX,
-      gruntY
-    );
-
     if (
       crosshairX >= gruntX &&
       crosshairX <= gruntX + gruntSize &&
@@ -87,11 +86,11 @@ class Enemy extends Component {
       clearInterval(this.movementInterval);
       this.movementInterval = false;
       grunt.removeGrunt(this.props.index);
+      this.props.updateScore(+this.props.playerScore + 10);
     }
   };
 
   componentDidMount() {
-    console.log(this.props.index);
     this.movementInterval = setInterval(
       () => this.handleEnemyMovement(),
       grunt.speed[0]

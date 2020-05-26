@@ -1,4 +1,5 @@
 import { v4 } from "uuid"; // For version 3
+import { getWindowDimensions } from "../../helpers";
 
 export const default_size = 12;
 export const default_damage = 5;
@@ -15,8 +16,9 @@ export const getRandomRGBColor = () => {
 };
 
 export const getRandomPosition = () => {
-  const X = Math.random() < 0.5 ? 0 : 900 - grunt.size * 2;
-  const Y = ~~(Math.random() * (600 - grunt.size * 2));
+  const { height, width } = getWindowDimensions();
+  const X = Math.random() < 0.5 ? 0 : width - grunt.size * 2;
+  const Y = ~~(Math.random() * (height - grunt.size * 2));
   return [X, Y];
 };
 

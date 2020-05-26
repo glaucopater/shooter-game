@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { gameData } from "../../data/game/gameData";
+import { getWindowDimensions } from "../../helpers";
+
+export const getWindowSize = () => {
+  return { width: window.pageXOffset, height: window.pageYOffset };
+};
 
 export default class Player extends Component {
-  map = { height: 600, width: 900 };
+  map = getWindowDimensions();
 
   handlePlayerMove = (index, orientation) => {
     let newPos = this.handleDiagonalMovements(index, orientation);
@@ -178,6 +183,9 @@ export default class Player extends Component {
   }
 
   render() {
+    const { height, width } = getWindowDimensions();
+    console.log("Player -> render -> size", height, width);
+
     return (
       <>
         <div

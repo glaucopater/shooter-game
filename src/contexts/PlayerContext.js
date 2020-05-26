@@ -7,6 +7,7 @@ export class PlayerProvider extends Component {
   state = {
     pos: [450, 300],
     health: 100,
+    score: 0,
   };
 
   data = {
@@ -42,6 +43,9 @@ export class PlayerProvider extends Component {
 
       if (health > 0)
         this.setState((prevState) => ({ health: prevState.health - damage }));
+    },
+    updateScore: (newScore) => {
+      this.setState({ score: newScore });
     },
     clearMovementIntervals: (direction) => {
       switch (direction) {

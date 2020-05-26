@@ -21,6 +21,8 @@ class Enemies extends Component {
           playerTakeDamage={this.props.takeDamage}
           playerPos={this.props.pos}
           playerSize={this.props.size}
+          playerScore={this.props.score}
+          updateScore={this.props.updateScore}
           index={index}
           isShooting={this.props.isShooting}
           crosshairPos={this.props.crosshairPos}
