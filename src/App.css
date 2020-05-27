@@ -19,6 +19,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 700px;
+  background: url("../src/assets/images/space.jpg") no-repeat;
+  background-size: cover;
 }
 
 .enemy {

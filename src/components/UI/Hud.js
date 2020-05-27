@@ -14,7 +14,7 @@ class Hud extends Component {
   render() {
     return (
       <div className="hud">
-        <div>Player Health: {this.props.health}</div>
+        <div>Health: {this.props.health}</div>
         <div>Score: {this.props.score}</div>
       </div>
     );
