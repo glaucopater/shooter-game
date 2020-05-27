@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { audio } from "../data/audio/audio";
+import { getWindowDimensions } from "../helpers";
 
-export const PlayerContext = React.createContext();
+export const PlayerContext = React.createContext({});
+
+const initialPlayerPos = getWindowDimensions();
 
 export class PlayerProvider extends Component {
   state = {
-    pos: [450, 300],
+    pos: [initialPlayerPos.width / 2, initialPlayerPos.height / 2],
     health: 100,
     score: 0,
   };
@@ -18,7 +21,7 @@ export class PlayerProvider extends Component {
       up: true,
     },
     isReady: true,
-    size: 30,
+    size: 5,
     speed: 1, // larger is slower, 10 is the fastest.
     stride: 4, // how far the player moves with each move input. Also affects the movement speed.
     willMove: {

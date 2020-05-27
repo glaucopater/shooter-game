@@ -41,10 +41,12 @@ export default class Arena extends PureComponent {
     const outerDiv = document
       .getElementsByClassName("arena")[0]
       .getBoundingClientRect();
+
     const newCrosshairPos = [
       e.clientX - (outerDiv.left + 4),
       e.clientY - (outerDiv.top + 4),
     ];
+
     this.setState({ crosshairPos: newCrosshairPos });
   };
 

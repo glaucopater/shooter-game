@@ -1,7 +1,7 @@
 import { v4 } from "uuid"; // For version 3
 import { getWindowDimensions } from "../../helpers";
 
-export const default_size = 12;
+export const default_size = 30;
 export const default_damage = 5;
 export const default_stride = 7;
 

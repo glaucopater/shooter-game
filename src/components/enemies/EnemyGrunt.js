@@ -3,8 +3,8 @@ import { audio } from "../../data/audio/audio";
 import { gameData } from "../../data/game/gameData";
 import { grunt } from "../../data/enemies/grunt";
 
-//min is 2
-export const maxSpeed = 1;
+//min is 2 for movement
+export const maxSpeed = 2;
 export const damageAreaSize = 5;
 
 export const getRandomMove = () => {
@@ -29,6 +29,7 @@ class Enemy extends Component {
 
     gruntX = gruntX > playerX ? gruntX - move : gruntX + move;
     gruntY = gruntY > playerY ? gruntY - move : gruntY + move;
+
     grunt.updateGruntPos(index, [gruntX, gruntY]);
     this.handleCheckPlayerCollision(gruntX, gruntY, playerX, playerY);
     this.handleCheckCrosshairPos(gruntX, gruntY);

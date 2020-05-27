@@ -1,13 +1,12 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { gameData } from "../../data/game/gameData";
 import { getWindowDimensions } from "../../helpers";
 
-export const getWindowSize = () => {
-  return { width: window.pageXOffset, height: window.pageYOffset };
-};
-
-export default class Player extends Component {
-  map = getWindowDimensions();
+export default class Player extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = { map: getWindowDimensions() };
+  }
 
   handlePlayerMove = (index, orientation) => {
     let newPos = this.handleDiagonalMovements(index, orientation);
@@ -19,6 +18,7 @@ export default class Player extends Component {
     const newPos = [...this.props.pos],
       willMove = this.props.willMove,
       stride = this.props.stride;
+
     if (willMove.right && willMove.up) {
       newPos.splice(0, 1, newPos[0] + stride / 2);
       newPos.splice(1, 1, newPos[1] - stride / 2);
@@ -38,9 +38,10 @@ export default class Player extends Component {
 
   handleBoundaryCheck = (oldPos) => {
     const newPos = [...oldPos];
-    const playerSize = this.props.size * 2,
-      width = this.map.width,
-      height = this.map.height;
+    const playerSize = this.props.size + 60;
+    const width = this.state.map.width;
+    const height = this.state.map.height;
+
     if (newPos[0] < 0) newPos.splice(0, 1, 0);
     if (newPos[1] < 0) newPos.splice(1, 1, 0);
     if (newPos[0] > width - playerSize) newPos.splice(0, 1, width - playerSize);
@@ -171,11 +172,24 @@ export default class Player extends Component {
     }
   };
 
+  updateMapDimension() {
+    this.setState({ map: getWindowDimensions() });
+  }
+
   componentDidMount() {
     this.interval = setInterval(() => this.forceUpdate(), gameData.frameRate);
     document.addEventListener("keydown", this.handleKeyDown);
     document.addEventListener("keyup", this.handleKeyUp);
+
+    this.updateMapDimension();
+    window.addEventListener("resize", this.updateMapDimension.bind(this));
   }
+
+  // componentWillUpdate(nextProps) {
+  //   if (nextProps.map !== this.state.map) {
+  //     this.setState({ map: getWindowDimensions() });
+  //   }
+  // }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyDown);
@@ -189,7 +203,7 @@ export default class Player extends Component {
           className="player"
           style={{
             color: "white",
-            padding: this.props.size,
+            padding: 0,
             position: "absolute",
             left: this.props.pos[0],
             top: this.props.pos[1],
