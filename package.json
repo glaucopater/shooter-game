@@ -3,17 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "acorn": "^7.2.0",
-    "handlebars": "^4.7.6",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^13.0.16",
+    "acorn": "^8.1.0",
+    "handlebars": "^4.7.7",
     "lodash.template": "^4.5.0",
     "mixin-deep": "^2.0.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "uuid": "^8.0.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
