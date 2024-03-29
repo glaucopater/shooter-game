@@ -44,6 +44,12 @@ body {
   ;
 }
 
+.playerStatus {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+}
+
 .spark {
   border-radius: 50%;
   position: absolute;

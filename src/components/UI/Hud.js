@@ -20,7 +20,7 @@ class Hud extends Component {
     return (
       <div className="hud">
         {this.props.health === 0 ?
-          <div>Game over! <button onClick={this.handleOnRestart}>Restart</button></div> :
+          <div className="playerStatus">Game over! <button onClick={this.handleOnRestart}>Restart</button></div> :
           <div>Health: {this.props.health}</div>}
         <div>Stage: {this.props.stage}</div>
         <div>Score: {this.props.score}</div>
