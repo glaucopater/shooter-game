@@ -20,7 +20,7 @@
     "build": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "netlify-build": "NODE_OPTIONS='--openssl-legacy-provider' && react-scripts build",
     "test": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts test",
-    "netlify-test": "NODE_OPTIONS=--openssl-legacy-provider && react-scripts test",
+    "netlify-test": "NODE_OPTIONS='--openssl-legacy-provider' && react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
