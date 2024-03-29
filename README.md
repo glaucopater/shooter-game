@@ -6,6 +6,6 @@ A shooter game proog of concept made in 2020
 
 Live Demo 👽
 
-https://deploy-preview-34--gifted-snyder-a8726c.netlify.app/
+https://gifted-snyder-a8726c.netlify.app/
 
-
+![Demo](/demo/demo.png)
