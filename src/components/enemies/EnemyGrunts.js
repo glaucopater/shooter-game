@@ -2,17 +2,13 @@ import React, { Component } from "react";
 import { gameData } from "../../data/game/gameData";
 import { grunt } from "../../data/enemies/grunt";
 import Enemy from "./EnemyGrunt";
+import { ENEMY_INITIAL_COUNT, ENEMY_INCREMENT_PER_STAGE } from "../../constants";
 
-const ENEMY_INCREMENT_PER_STAGE = 1;
-const ENEMY_INITIAL_COUNT = 1;
-const INITIAL_STAGE = 0;
 
 class Enemies extends Component {
   grunts;
   interval;
   numberEnemies = ENEMY_INITIAL_COUNT;
-  stage = INITIAL_STAGE;
-
   handlePopulateEnemies = () => {
     if (grunt.pos.length <= 0) return;
 
@@ -37,10 +33,12 @@ class Enemies extends Component {
     if (grunt.pos.length <= 0) {
       //each 5 stage increment the number of enemies
       const increment =
-        this.stage > 1 && this.stage % 5 === 0 ? ENEMY_INCREMENT_PER_STAGE : 0;
+        this.props.stage > 1 && this.props.stage % 5 === 0 ? ENEMY_INCREMENT_PER_STAGE : 0;
+      this.props.updateStage(+this.props.stage + 1);
       this.numberEnemies += increment;
-      this.stage += 1;
+
       grunt.generateGrunts(this.numberEnemies);
+
     }
     this.handlePopulateEnemies();
   };
@@ -70,11 +68,8 @@ class Enemies extends Component {
 
   render() {
     return (
-      <div className="tempHud">
+      <div className="gameInfoHud">
         <div>{this.grunts}</div>
-        <div className="stageCounter">
-          Stage: {this.stage} Enemies: {this.numberEnemies}
-        </div>
       </div>
     );
   }

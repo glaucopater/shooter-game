@@ -22,7 +22,7 @@ export const getWindowSize = () => {
 export const getRandomRGBColor = () => {
   return `rgb(${~~(Math.random() * 105) + 150}, ${~~(Math.random() * 80)}, ${~~(
     Math.random() * 32
-  )}`;
+  )})`;
 };
 
 export const getRandomSpeed = (stride) => {

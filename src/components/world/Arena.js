@@ -38,6 +38,7 @@ export default class Arena extends PureComponent {
   };
 
   handleUpdateCrosshairPos = (e) => {
+
     const outerDiv = document
       .getElementsByClassName("arena")[0]
       .getBoundingClientRect();
@@ -47,8 +48,10 @@ export default class Arena extends PureComponent {
       e.clientY - (outerDiv.top + 4),
     ];
 
+    // if (e.clientY > 150)
     this.setState({ crosshairPos: newCrosshairPos });
   };
+
 
   componentDidMount() {
     this.interval = setInterval(() => this.forceUpdate(), gameData.frameRate);
@@ -63,32 +66,39 @@ export default class Arena extends PureComponent {
 
   render() {
     const { crosshairPos, crosshairDisplay } = this.state,
-      { handleAutomaticFire, handleStopFiring, isFiring } = this;
+      { handleAutomaticFire, handleStopFiring, isShooting } = this;
 
     return (
-      <div
-        className="arena"
-        onMouseDown={handleAutomaticFire}
-        onMouseUp={handleStopFiring}
-      >
+      <>
         <PlayerContext.Consumer>
-          {(player) => (
-            <>
-              <Hud {...player} />
-              <Player {...player} />
-              <Enemies
-                {...player}
-                crosshairPos={crosshairPos}
-                isShooting={isFiring}
-              />
-              <Crosshairs
-                crosshairPos={crosshairPos}
-                crosshairDisplay={crosshairDisplay}
-              />
-            </>
-          )}
+          {(player) => (<Hud {...player} />)}
         </PlayerContext.Consumer>
-      </div>
+        <div
+          className="arena"
+          onMouseDown={handleAutomaticFire}
+          onMouseUp={handleStopFiring}
+        >
+          <PlayerContext.Consumer>
+            {(player) => (
+              <>
+                <Player {...player} />
+                {player.health > 0 &&
+                  <>
+                    <Enemies
+                      {...player}
+                      crosshairPos={crosshairPos}
+                      isShooting={isShooting}
+                    />
+                    <Crosshairs
+                      crosshairPos={crosshairPos}
+                      crosshairDisplay={crosshairDisplay}
+                    />
+                  </>}
+              </>
+            )}
+          </PlayerContext.Consumer>
+        </div>
+      </>
     );
   }
 }

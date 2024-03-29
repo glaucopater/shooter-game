@@ -1,21 +1,17 @@
 import { v4 } from "uuid"; // For version 3
 import { getRandomSpeed, getRandomRGBColor, getRandomPosition } from "../../helpers";
-
-export const default_size = 30;
-export const default_damage = 5;
-export const default_stride = 7;
+import { DEFAULT_GRUNT_SIZE, DEFAULT_GRUNT_DAMAGE, DEFAULT_GRUNT_STRIDE } from "../../constants";
 
 
 export const grunt = {
-  size: default_size,
+  size: DEFAULT_GRUNT_SIZE,
   pos: [],
   color: [],
   speed: [],
   keys: [],
-  damage: default_damage,
-  stride: default_stride,
-  generateGrunts: (num, size = default_size, stride = default_stride) => {
-    console.log("generateGrunts", num, size, stride);
+  damage: DEFAULT_GRUNT_DAMAGE,
+  stride: DEFAULT_GRUNT_STRIDE,
+  generateGrunts: (num, size = DEFAULT_GRUNT_SIZE, stride = DEFAULT_GRUNT_STRIDE) => {
     for (let i = 0; i < num; i++) {
       const [X, Y] = getRandomPosition(size);
       const color = getRandomRGBColor();

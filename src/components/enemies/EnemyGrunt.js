@@ -105,9 +105,10 @@ class Enemy extends Component {
   }
 
   render() {
+
     return (
       <div
-        className="enemy"
+        className="enemy pulse"
         style={{
           left: grunt.pos[this.props.index][0],
           top: grunt.pos[this.props.index][1],

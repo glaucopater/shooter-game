@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { gameData } from "../../data/game/gameData";
+import { FIRE_AVATAR } from "../../constants/index";
 
 class Crosshairs extends Component {
   interval;
@@ -35,7 +36,7 @@ class Crosshairs extends Component {
           }}
         >
           <span aria-label="fire" role="img" style={{ fontSize: 30 }}>
-            🔥
+            {FIRE_AVATAR}
           </span>
         </div>
         <div
