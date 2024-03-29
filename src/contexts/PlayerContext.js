@@ -1,17 +1,22 @@
 import React, { Component } from "react";
 import { audio } from "../data/audio/audio";
 import { getWindowDimensions } from "../helpers";
+import { INITIAL_STAGE } from "../constants";
 
 export const PlayerContext = React.createContext({});
 
 const initialPlayerPos = getWindowDimensions();
 
+const initialPlayerState = {
+  pos: [initialPlayerPos.width / 2, initialPlayerPos.height / 2],
+  health: 100,
+  score: 0,
+  stage: INITIAL_STAGE
+};
+
+
 export class PlayerProvider extends Component {
-  state = {
-    pos: [initialPlayerPos.width / 2, initialPlayerPos.height / 2],
-    health: 100,
-    score: 0,
-  };
+  state = initialPlayerState;
 
   data = {
     canMove: {
@@ -42,13 +47,17 @@ export class PlayerProvider extends Component {
       audio.hit2.currentTime = 0;
       audio.hit2.play();
       if (!health || health - damage <= 0)
-        return this.setState({ health: "DEAD" });
+        return this.setState({ health: 0, isReady: false });
 
       if (health > 0)
         this.setState((prevState) => ({ health: prevState.health - damage }));
     },
     updateScore: (newScore) => {
       this.setState({ score: newScore });
+    },
+
+    updateStage: (newStage) => {
+      this.setState({ stage: newStage });
     },
     clearMovementIntervals: (direction) => {
       switch (direction) {
@@ -72,9 +81,13 @@ export class PlayerProvider extends Component {
           break;
       }
     },
+    resetPlayer: () => {
+      this.setState(initialPlayerState);
+    }
   };
 
   render() {
+
     return (
       <PlayerContext.Provider
         value={{

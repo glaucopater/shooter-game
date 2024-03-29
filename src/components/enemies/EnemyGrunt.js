@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import { audio } from "../../data/audio/audio";
 import { gameData } from "../../data/game/gameData";
 import { grunt } from "../../data/enemies/grunt";
+import { GRUNT_AVATAR, GRUNT_MAX_SPEED, DAMAGE_AREA_SIZE } from "../../constants";
 
-//min is 2 for movement
-export const maxSpeed = 2;
-export const damageAreaSize = 5;
+
 
 export const getRandomMove = () => {
-  return ~~(Math.random() * maxSpeed);
+  return ~~(Math.random() * GRUNT_MAX_SPEED);
 };
 
 class Enemy extends Component {
@@ -66,7 +65,7 @@ class Enemy extends Component {
 
     const crosshairX = this.props.crosshairPos[0];
     const crosshairY = this.props.crosshairPos[1];
-    const gruntSize = grunt.size * damageAreaSize;
+    const gruntSize = grunt.size * DAMAGE_AREA_SIZE;
 
     if (
       crosshairX >= gruntX &&
@@ -106,9 +105,10 @@ class Enemy extends Component {
   }
 
   render() {
+
     return (
       <div
-        className="enemy"
+        className="enemy pulse"
         style={{
           left: grunt.pos[this.props.index][0],
           top: grunt.pos[this.props.index][1],
@@ -116,7 +116,7 @@ class Enemy extends Component {
         }}
       >
         <span aria-label="enemy" role="img" style={{ fontSize: 30 }}>
-          👽
+          {GRUNT_AVATAR}
         </span>
       </div>
     );

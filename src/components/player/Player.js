@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import { gameData } from "../../data/game/gameData";
 import { getWindowDimensions } from "../../helpers";
 
+import { PLAYER_AVATAR, PLAYER_AVATAR_SICK, PLAYER_AVATAR_DEAD } from "../../constants/index";
+
 export default class Player extends PureComponent {
   constructor(props) {
     super(props);
@@ -38,9 +40,9 @@ export default class Player extends PureComponent {
 
   handleBoundaryCheck = (oldPos) => {
     const newPos = [...oldPos];
-    const playerSize = this.props.size + 60;
-    const width = this.state.map.width;
-    const height = this.state.map.height;
+    const playerSize = this.props.size;
+    const width = this.state.map.width - 30;
+    const height = this.state.map.height - 130;
 
     if (newPos[0] < 0) newPos.splice(0, 1, 0);
     if (newPos[1] < 0) newPos.splice(1, 1, 0);
@@ -62,7 +64,7 @@ export default class Player extends PureComponent {
   // only the first keypress is registered and the interval continues until the key registers a 'keyup'.
   handleDirections = (e) => {
     e.preventDefault();
-    const canMove = this.props.canMove;
+    const canMove = this.props.health > 0 ? this.props.canMove : false;
     let stride = this.props.stride,
       index = 0,
       direction;
@@ -185,22 +187,30 @@ export default class Player extends PureComponent {
     window.addEventListener("resize", this.updateMapDimension.bind(this));
   }
 
-  // componentWillUpdate(nextProps) {
-  //   if (nextProps.map !== this.state.map) {
-  //     this.setState({ map: getWindowDimensions() });
-  //   }
-  // }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyDown);
     document.removeEventListener("keyup", this.handleKeyUp);
   }
 
+  getPlayerAvatar = (health
+  ) => {
+
+    if (health === 0)
+      return PLAYER_AVATAR_DEAD
+    if (health <= 50)
+      return PLAYER_AVATAR_SICK
+    else
+      return PLAYER_AVATAR
+  }
+
   render() {
+
+
     return (
       <>
         <div
-          className="player"
+          className="player breath"
           style={{
             color: "white",
             padding: 0,
@@ -210,7 +220,9 @@ export default class Player extends PureComponent {
           }}
         >
           <span aria-label="player" role="img" style={{ fontSize: 30 }}>
-            🤨
+            {
+              this.getPlayerAvatar(this.props.health)
+            }
           </span>
         </div>
       </>

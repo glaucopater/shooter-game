@@ -9,13 +9,16 @@ body {
   width: 100vw;
   margin: 0 auto;
   background: black;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }
 
 .arena {
   cursor: none;
   background: rgba(2, 103, 218, 0.562);
   position: relative;
-  margin: 2% auto;
+  margin: 10px auto;
   display: flex;
   flex-direction: column;
   height: 700px;
@@ -25,6 +28,7 @@ body {
 
 .enemy {
   position: absolute;
+  border-radius: 50%;
 }
 
 .hud {
@@ -61,6 +65,7 @@ body {
 
 .innerCrosshair {
   cursor: crosshair;
+  color: #fff;
   padding: 2px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.527);
@@ -77,6 +82,43 @@ body {
   background: #ffffff50;
 }
 
-.tempHud {
+.gameInfoHud {
   float: right;
+}
+
+.player {
+  border-radius: 50%;
+  border: 1px solid azure;
+}
+
+.breath {
+  animation: breath-animation 1s infinite;
+}
+
+.pulse {
+  animation: pulse-animation 1s infinite;
+}
+
+@keyframes breath-animation {
+  0% {
+    translate: 0 0px;
+  }
+
+  50% {
+    translate: 0 2px;
+  }
+
+  100% {
+    translate: 0 0px;
+  }
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+  }
 }
