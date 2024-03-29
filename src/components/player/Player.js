@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import { gameData } from "../../data/game/gameData";
 import { getWindowDimensions } from "../../helpers";
 
+import { PLAYER_AVATAR, PLAYER_AVATAR_DEAD } from "../../constants/index";
+
 export default class Player extends PureComponent {
   constructor(props) {
     super(props);
@@ -185,11 +187,6 @@ export default class Player extends PureComponent {
     window.addEventListener("resize", this.updateMapDimension.bind(this));
   }
 
-  // componentWillUpdate(nextProps) {
-  //   if (nextProps.map !== this.state.map) {
-  //     this.setState({ map: getWindowDimensions() });
-  //   }
-  // }
 
   componentWillUnmount() {
     document.removeEventListener("keydown", this.handleKeyDown);
@@ -197,6 +194,7 @@ export default class Player extends PureComponent {
   }
 
   render() {
+
     return (
       <>
         <div
@@ -210,7 +208,7 @@ export default class Player extends PureComponent {
           }}
         >
           <span aria-label="player" role="img" style={{ fontSize: 30 }}>
-            🤨
+            {this.props.health === "DEAD" ? PLAYER_AVATAR_DEAD : PLAYER_AVATAR}
           </span>
         </div>
       </>

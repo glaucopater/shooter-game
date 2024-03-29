@@ -52,10 +52,10 @@ class Enemies extends Component {
   componentDidMount() {
     setTimeout(
       () =>
-        (this.interval = setInterval(
-          () => this.forceUpdate(),
-          gameData.frameRate
-        )),
+      (this.interval = setInterval(
+        () => this.forceUpdate(),
+        gameData.frameRate
+      )),
       1000
     );
   }

@@ -14,6 +14,7 @@ class Hud extends Component {
   render() {
     return (
       <div className="hud">
+        {this.props.health === "DEAD" ? <div>Game over!</div> : null}
         <div>Health: {this.props.health}</div>
         <div>Score: {this.props.score}</div>
       </div>
