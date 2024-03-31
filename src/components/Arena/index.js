@@ -3,9 +3,9 @@ import { audio } from "../../data/audio/audio";
 import { gameData } from "../../data/game/gameData";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import Crosshairs from "../UI/Crosshairs";
-import Enemies from "../enemies/EnemyGrunts";
+import Enemies from "../Enemies/index";
 import Hud from "../UI/Hud";
-import Player from "../player/Player";
+import Player from "../Player/index";
 
 export default class Arena extends PureComponent {
   state = {
