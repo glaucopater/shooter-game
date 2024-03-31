@@ -1,3 +1,4 @@
+import { GRUNT_MAX_SPEED } from "../constants";
 export const hasWindow = typeof window !== "undefined";
 
 export function getWindowDimensions() {
@@ -34,4 +35,9 @@ export const getRandomPosition = (size) => {
   const X = Math.random() < 0.5 ? 0 : width - size * 2;
   const Y = ~~(Math.random() * (height - size * 2));
   return [X, Y];
+};
+
+
+export const getRandomMove = (speed = GRUNT_MAX_SPEED) => {
+  return ~~(Math.random() * speed);
 };
