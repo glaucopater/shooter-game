@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { gameData } from "../../data/game/gameData";
 import { grunt } from "../../data/enemies/grunt";
-import Enemy from "./EnemyGrunt";
+import Enemy from "../Enemy";
 import { ENEMY_INITIAL_COUNT, ENEMY_INCREMENT_PER_STAGE } from "../../constants";
 
 
