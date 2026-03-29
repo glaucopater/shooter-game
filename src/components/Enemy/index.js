@@ -2,13 +2,8 @@ import React, { Component } from "react";
 import { audio } from "../../data/audio/audio";
 import { gameData } from "../../data/game/gameData";
 import { grunt } from "../../data/enemies/grunt";
-import { GRUNT_AVATAR, GRUNT_MAX_SPEED, DAMAGE_AREA_SIZE } from "../../constants";
-
-
-
-export const getRandomMove = () => {
-  return ~~(Math.random() * GRUNT_MAX_SPEED);
-};
+import { GRUNT_AVATAR, DAMAGE_AREA_SIZE } from "../../constants";
+import { getRandomMove } from "../../helpers";
 
 class Enemy extends Component {
   movementInterval = null;
